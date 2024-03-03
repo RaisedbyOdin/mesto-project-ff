@@ -9,7 +9,6 @@ import {
 } from './modal.js';
 
 const cardTemplate = document.querySelector('#card-template').content;
-//const cardTemplate2 = document.querySelector('#card-template');
 const cardsList = document.querySelector('.places__list');
 const editButton = document.querySelector('.profile__edit-button');
 const addButton = document.querySelector('.profile__add-button');
