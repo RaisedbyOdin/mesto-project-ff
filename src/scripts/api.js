@@ -29,13 +29,13 @@ function takeServerCards() {
   });
 }
 
-function changeServerProfile(inputNameFormProfile, inputDescriptionFormProfile) {
+function changeServerProfile(formInputProfileName, formInputProfileDescription) {
   return request(config['baseUrl'] + '/users/me', {
     method: 'PATCH',
     headers: config['headers'],
     body: JSON.stringify({
-      name: inputNameFormProfile.value,
-      about: inputDescriptionFormProfile.value,
+      name: formInputProfileName.value,
+      about: formInputProfileDescription.value,
     }),
   });
 }
