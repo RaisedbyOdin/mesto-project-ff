@@ -31,8 +31,7 @@ function createCard(item, userNameid, deleteCard, likeCard, openFullImage) {
 }
 
 function deleteCard(item) {
-  const card = button.closest('.card'); 
-  deleteServerCard(card)
+  deleteServerCard(item['_id'])
     .then(() => {
       item.remove();
     })
@@ -45,7 +44,7 @@ function likeCard(evt) {
   const likeButton = evt.target;
   const card = likeButton.closest('.card');
   if (!likeButton.classList.contains('card__like-button_is-active')) {
-    putServerLike(card)
+    putServerLike(card['_id'])
       .then((result) => {
         likeButton.classList.toggle('card__like-button_is-active');
         const likeAmount = card.querySelector('.card__like-amount');
@@ -55,7 +54,7 @@ function likeCard(evt) {
         console.log(err);
       });
   } else {
-    deleteServerLike(card)
+    deleteServerLike(card['_id'])
       .then((result) => {
         likeButton.classList.toggle('card__like-button_is-active');
         const likeAmount = card.querySelector('.card__like-amount');

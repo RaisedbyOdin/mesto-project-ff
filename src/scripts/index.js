@@ -117,14 +117,13 @@ function submitProfileForm(evt) {
 function submitCardForm(evt) {
   evt.preventDefault();
   const item = {};
-  item.likes = new Array();
   item.name = formInputAddNewCardTitle.value;
   item.link = formInputLinkNewCard.value;
   const button = evt.target.querySelector('.popup__button');
   button.textContent = 'Сохранение...';
   postServerCard(item)
     .then((result) => {
-      let profileUserNameId = result[0]['_id']
+      let profileUserNameId = profileUserName['_id']
       const cardElement = createCard(
         result,
         profileUserNameId,
