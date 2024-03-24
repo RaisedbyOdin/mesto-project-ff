@@ -23,7 +23,7 @@ const popups = document.querySelectorAll('.popup');
 const editAvatarButton = document.querySelector('.profile__image-edit-button');
 const popupEditAvatar = document.querySelector('.popup_type_edit-avatar');
 const popupEdit = document.querySelector('.popup_type_edit');
-const popupAddCard = document.querySelector('.popup_type_new-card');
+const popupAddNewCard = document.querySelector('.popup_type_new-card');
 const popupImage = document.querySelector('.popup_type_image');
 const popupFullImage = document.querySelector('.popup__image');
 const profileUserName = document.querySelector('.profile__title');
@@ -59,7 +59,7 @@ editProfileButton.addEventListener('click', () => {
 });
 
 addCardButton.addEventListener('click', () => {
-  openModal(popupAddCard);
+  openModal(popupAddNewCard);
 });
 
 editAvatarButton.addEventListener('click', () => {
@@ -134,7 +134,7 @@ function submitCardForm(evt) {
       addCard(cardElement);
       newPlaceForm.reset();
       clearValidation(newPlaceForm, validationConfig);
-      closeModal(popupAddCard);
+      closeModal(popupAddNewCard);
     })
     .catch((err) => {
       console.log(err);
