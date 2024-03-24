@@ -124,9 +124,10 @@ function submitCardForm(evt) {
   button.textContent = 'Сохранение...';
   postServerCard(item)
     .then((result) => {
+      let profileUserNameId = result[0]['_id']
       const cardElement = createCard(
         result,
-        profileUserName,
+        profileUserNameId,
         deleteCard,
         likeCard,
         openFullImage
@@ -167,7 +168,7 @@ Promise.all([takeServerProfile(), takeServerCards()])
     results[1].forEach((element) => {
       const cardElement = createCard(
         element,
-        profileUserName,
+        profileUserName._id,
         deleteCard,
         likeCard,
         openFullImage
@@ -178,5 +179,3 @@ Promise.all([takeServerProfile(), takeServerCards()])
   .catch((err) => {
     console.log(err);
   });
-
-export { addCard };

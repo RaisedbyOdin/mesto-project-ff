@@ -2,7 +2,7 @@ import { deleteServerCard, putServerLike, deleteServerLike } from './api.js';
 
 const cardTemplate = document.querySelector('#card-template').content;
 
-function createCard(item, userName, deleteCard, likeCard, openFullImage) {
+function createCard(item, userNameid, deleteCard, likeCard, openFullImage) {
   const cardElement = cardTemplate.querySelector('.card').cloneNode(true);
   const delButton = cardElement.querySelector('.card__delete-button');
   const cardImg = cardElement.querySelector('.card__image');
@@ -14,15 +14,15 @@ function createCard(item, userName, deleteCard, likeCard, openFullImage) {
   cardElement.owner_id = item.owner._id;
   likeAmount.textContent = item.likes.length;
   item.likes.forEach(function (obj) {
-    if (obj['_id'] === userName['_id']) {
+    if (obj['_id'] === userNameid) {
       likeButton.classList.add('card__like-button_is-active');
     }
   });
   cardElement.querySelector('.card__title').textContent = item.name;
   delButton.addEventListener('click', () => {
-    deleteCard(delButton);
+    deleteCard(cardElement);
   });
-  if (!(cardElement.owner_id === userName._id)) {
+  if (!(cardElement.owner_id === userNameid)) {
     delButton.remove();
   }
   likeButton.addEventListener('click', likeCard);
@@ -30,11 +30,11 @@ function createCard(item, userName, deleteCard, likeCard, openFullImage) {
   return cardElement;
 }
 
-function deleteCard(button) {
-  const card = button.closest('.card');
+function deleteCard(item) {
+  const card = button.closest('.card'); 
   deleteServerCard(card)
     .then(() => {
-      card.remove();
+      item.remove();
     })
     .catch((err) => {
       console.log(err);

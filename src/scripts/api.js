@@ -51,22 +51,22 @@ function postServerCard(item) {
   });
 }
 
-function deleteServerCard(item) {
-  return request(config['baseUrl'] + '/cards/' + item['_id'], {
+function deleteServerCard(id) {
+  return request(config['baseUrl'] + '/cards/' + id, {
     method: 'DELETE',
     headers: config['headers'],
   });
 }
 
-function putServerLike(item) {
-  return request(config['baseUrl'] + '/cards/likes/' + item['_id'], {
+function putServerLike(id) {
+  return request(config['baseUrl'] + '/cards/likes/' + id, {
     method: 'PUT',
     headers: config['headers'],
   });
 }
 
-function deleteServerLike(item) {
-  return request(config['baseUrl'] + '/cards/likes/' + item['_id'], {
+function deleteServerLike(id) {
+  return request(config['baseUrl'] + '/cards/likes/' + id, {
     method: 'DELETE',
     headers: config['headers'],
   });
