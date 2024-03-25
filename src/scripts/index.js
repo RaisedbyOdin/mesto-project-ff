@@ -32,6 +32,7 @@ const userAvatar = document.querySelector('.profile__image');
 const formEditProfile = document.forms['edit-profile'];
 const formAddNewPlace = document.forms['new-place'];
 const formEditAvatar = document.forms['edit-avatar'];
+let userId;
 
 const validationConfig = {
   formSelector: '.popup__form',
@@ -123,7 +124,7 @@ function submitCardForm(evt) {
   button.textContent = 'Сохранение...';
   postServerCard(item)
     .then((result) => {
-      let profileUserNameId = profileUserName['_id']
+      const profileUserNameId = profileUserName['_id']
       const cardElement = createCard(
         result,
         profileUserNameId,
@@ -160,14 +161,14 @@ enableValidation(validationConfig);
 Promise.all([takeServerProfile(), takeServerCards()])
   .then((results) => {
     profileUserName.textContent = results[0]['name'];
-    profileUserName._id = results[0]['_id'];
+    userId = results[0]['_id'];
     profileDescription.textContent = results[0]['about'];
     userAvatar.style.backgroundImage = 'url(' + results[0]['avatar'] + ')';
     results[1].reverse();
     results[1].forEach((element) => {
       const cardElement = createCard(
         element,
-        profileUserName._id,
+        userId,
         deleteCard,
         likeCard,
         openFullImage
